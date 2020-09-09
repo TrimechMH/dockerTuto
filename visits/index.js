@@ -9,14 +9,17 @@ const client = redis.createClient({
     port: 6379
 });
 
-client.set('visits', 404);
+client.set('visits', 0);
 
 app.get('/', (req, res) => {
-    process.exit(0);
     client.get('visits', (err, visits) => {
         res.send('Number of visits is ' + visits);
         client.set('visits', parseInt(visits) + 1);
     });
+});
+
+app.get('/exit', (req, res) => {
+    process.exit(0);
 });
 
 app.listen(8081, () => {
