@@ -5,6 +5,7 @@ services:
   - docker
 
 before_install:
+  - cd frontend
   - docker build -t mhtrimech/react-test -f Dockerfile.dev .
 
 script:
