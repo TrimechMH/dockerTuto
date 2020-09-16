@@ -5,20 +5,21 @@ services:
   - docker
 
 before_install:
-  - cd frontend
-  - docker build -t mhtrimech/react-test -f Dockerfile.dev .
+  - cd complex/client
+  - docker build -t mhtrimech/complex-react -f ./compex/client/Dockerfile.dev .
 
 script:
-  - docker run -e CI=true mhtrimech/react-test npm run test -- --coverage
+  - docker run -e CI=true mhtrimech/complex-react npm run test -- --coverage
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "docker-react"
-  env: "DockerReact-env"
-  bucket_name: "elasticbeanstalk-us-east-2-811344560681"
-  bucket_path: "docker-react"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+after_success:
+  - docker build -t mhtrimech/complex-client ./compex/client
+  - docker build -t mhtrimech/complex-nginx ./compex/nginx
+  - docker build -t mhtrimech/complex-server ./compex/server
+  - docker build -t mhtrimech/complex-worker ./compex/worker
+  # Log in to the docker CLI
+  - docker login -u "$DOCKER_ID" -p "DOCKER_PASSWORD"
+  # Take those images and push them to docker hub.
+  - docker push mhtrimech/complex-client
+  - docker push mhtrimech/complex-nginx
+  - docker push mhtrimech/complex-server
+  - docker push mhtrimech/complex-worker
