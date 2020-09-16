@@ -5,8 +5,7 @@ services:
   - docker
 
 before_install:
-  - cd complex/client
-  - docker build -t mhtrimech/complex-react -f ./compex/client/Dockerfile.dev .
+  - docker build -t mhtrimech/complex-react -f ./compex/client/Dockerfile.dev ./compex/client
 
 script:
   - docker run -e CI=true mhtrimech/complex-react npm run test -- --coverage
