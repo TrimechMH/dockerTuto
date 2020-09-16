@@ -14,12 +14,12 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/otherpage">Other Page</Link>
           </header>
-          <body className="App-body">
+          <div className="App-body">
             <div>
               <Route exact path="/" component={Fib}/>
               <Route exact path="/otherpage" component={OtherPage}/>
             </div>
-          </body>
+          </div>
         </div>
       </Router>
   );
