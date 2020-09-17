@@ -16,6 +16,8 @@ after_success:
   - docker build -t mhtrimech/complex-server ./complex/server
   - docker build -t mhtrimech/complex-worker ./complex/worker
   # Log in to the docker CLI
+  - echo "$DOCKER_USERNAME"
+  - echo "$DOCKER_PASSWORD"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take those images and push them to docker hub.
   - docker push mhtrimech/complex-client
