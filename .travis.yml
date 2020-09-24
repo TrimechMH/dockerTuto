@@ -1,5 +1,5 @@
-language: generic
 sudo: required
+language: generic
 
 services:
   - docker
@@ -28,7 +28,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "complex-docker"
-  env: "ComplexDocker-env-1"
+  env: "ComplexDocker-env"
   bucket_name: "elasticbeanstalk-us-east-2-811344560681"
   bucket_path: "complex-docker"
   on:
