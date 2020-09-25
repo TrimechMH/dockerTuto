@@ -24,7 +24,6 @@ after_success:
   - docker push mhtrimech/complex-worker
 
 deploy:
-  edge: true
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "complex-docker"
