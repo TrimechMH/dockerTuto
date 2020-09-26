@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: mhtrimech/complex-worker
+          image: mhtrimech/complex-client
           ports:
-            - containerPort: 9999
+            - containerPort: 3000
