@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 docker build -t mhtrimech/k8s-complex-client:latest -t mhtrimech/k8s-complex-client:$SHA -f ./k8s-complex/client/Dockerfile ./k8s-complex/client
-docker build -t mhtrimech/k8s-complex-server:latest -t mhtrimech/k8s-complex-server:$SHA -f ./k8s-complex/server/Dockerfile./k8s-complex/server
-docker build -t mhtrimech/k8s-complex-worker:latest -t mhtrimech/k8s-complex-worker:$SHA -f ./k8s-complex/worker/Dockerfile./k8s-complex/worker
+docker build -t mhtrimech/k8s-complex-server:latest -t mhtrimech/k8s-complex-server:$SHA -f ./k8s-complex/server/Dockerfile ./k8s-complex/server
+docker build -t mhtrimech/k8s-complex-worker:latest -t mhtrimech/k8s-complex-worker:$SHA -f ./k8s-complex/worker/Dockerfile ./k8s-complex/worker
 
 docker push mhtrimech/k8s-complex-client:latest
 docker push mhtrimech/k8s-complex-server:latest
