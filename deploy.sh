@@ -12,6 +12,6 @@ docker push mhtrimech/k8s-complex-server:$SHA
 docker push mhtrimech/k8s-complex-worker:$SHA
 
 kubectl apply -f ./k8s-complex/k8s
-kubectl set image deplyment/client-deployment client=mhtrimech/k8s-complex-client:$SHA
-kubectl set image deplyment/server-deployment server=mhtrimech/k8s-complex-server:$SHA
-kubectl set image deplyment/worker-deployment worker=mhtrimech/k8s-complex-worker:$SHA
+kubectl set image deployment/client-deployment client=mhtrimech/k8s-complex-client:$SHA
+kubectl set image deployment/server-deployment server=mhtrimech/k8s-complex-server:$SHA
+kubectl set image deployment/worker-deployment worker=mhtrimech/k8s-complex-worker:$SHA
