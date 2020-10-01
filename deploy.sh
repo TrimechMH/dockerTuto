@@ -1,17 +1,16 @@
-#!/usr/bin/env bash
-docker build -t mhtrimech/k8s-complex-client:latest -t mhtrimech/k8s-complex-client:$SHA -f ./k8s-complex/client/Dockerfile ./k8s-complex/client
-docker build -t mhtrimech/k8s-complex-server:latest -t mhtrimech/k8s-complex-server:$SHA -f ./k8s-complex/server/Dockerfile ./k8s-complex/server
-docker build -t mhtrimech/k8s-complex-worker:latest -t mhtrimech/k8s-complex-worker:$SHA -f ./k8s-complex/worker/Dockerfile ./k8s-complex/worker
+docker build -t stephengrider/multi-client:latest -t stephengrider/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t stephengrider/multi-server:latest -t stephengrider/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t stephengrider/multi-worker:latest -t stephengrider/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
-docker push mhtrimech/k8s-complex-client:latest
-docker push mhtrimech/k8s-complex-server:latest
-docker push mhtrimech/k8s-complex-worker:latest
+docker push stephengrider/multi-client:latest
+docker push stephengrider/multi-server:latest
+docker push stephengrider/multi-worker:latest
 
-docker push mhtrimech/k8s-complex-client:$SHA
-docker push mhtrimech/k8s-complex-server:$SHA
-docker push mhtrimech/k8s-complex-worker:$SHA
+docker push stephengrider/multi-client:$SHA
+docker push stephengrider/multi-server:$SHA
+docker push stephengrider/multi-worker:$SHA
 
-kubectl apply -f ./k8s-complex/k8s
-kubectl set image deplyments/client-deployment client=mhtrimech/k8s-complex-client:$SHA
-kubectl set image deplyments/server-deployment server=mhtrimech/k8s-complex-server:$SHA
-kubectl set image deplyments/worker-deployment worker=mhtrimech/k8s-complex-worker:$SHA
+kubectl apply -f k8s
+kubectl set image deployment/server-deployment server=stephengrider/multi-server:$SHA
+kubectl set image deployment/client-deployment client=stephengrider/multi-client:$SHA
+kubectl set image deployment/worker-deployment worker=stephengrider/multi-worker:$SHA
